@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: Vertical axis added</title>
+		<script type="text/javascript" src="d3/d3.js"></script>
+		<style type="text/css">
+			
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+			
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+
+
+			//Width and height
+			var w = 950;
+			var h = 400;
+			var padding = 30;
+
+			//Create scale functions
+			var xScale = d3.scale.linear();	
+			var yScale = d3.scale.linear();
+			var rScale = d3.scale.linear();
+			
+			//Format X axis
+			//var f = d3.formatPrefix(",.0", 1e+2);
+			//var formatAsPercentage = d3.format(".1%");
+			var xAxis = d3.svg.axis();
+		
+
+			//Define Y axis
+			var yAxis = d3.svg.axis();
+
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+						
+						
+		
+						
+d3.csv("tvp1.csv",function(d)
+{
+	return{
+		Actual: +d.Actual ,
+		Predicted:+d.Predicted,
+	};
+},function(error, dataset) {
+
+	xScale.domain([d3.min(dataset, function(d) { return d.Actual; }), 
+				d3.max(dataset, function(d) { return d.Actual; }) ])
+				.rangeRound([padding, w - padding * 2]);
+
+	yScale.domain([0, d3.max(dataset, function(d) { return d.Predicted; })])
+	.range([h - padding, padding]);
+
+	rScale.domain([0, d3.max(dataset, function(d) { return Math.abs(d.Predicted/d.Actual-1); })])
+	.range([0.1, 1]);
+								 
+	//Continue creating scale for X axis
+	xAxis.scale(xScale)
+		.orient("bottom")
+		.tickFormat(d3.format(".1s"))
+		.ticks(5, "k");
+	//Continue creating  scale for Y axis			
+	yAxis.scale(yScale)
+		.orient("left")
+		.ticks(10);		
+		
+	//Create X axis	
+	svg.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(0," + (h - padding) + ")")
+		.call(xAxis)
+		.append("text")
+        //.attr("x", 16)
+        .attr("dx", "80em")
+        .style("text-anchor", "end")
+        .text("Actual");
+			
+	//Create Y axis
+	svg.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(" + padding + ",0)")
+		.call(yAxis)
+		.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("dy", "1em")
+        .style("text-anchor", "end")
+        .text("Predicted");
+				
+	//Create circles
+	svg.selectAll("circle")
+		.data(dataset)
+		.enter()
+		.append("circle")
+		.attr("stroke", "black")
+		.attr("fill", function(d){
+		return "rgba(175, 255, 155,1)"; 
+		})
+		.attr("cx", function(d) {
+			return xScale(parseFloat(d.Actual));
+		})
+		.attr("cy", function(d) {
+			return yScale(parseFloat(d.Predicted));
+		})
+		.attr("r", function(d) {
+			return rScale(Math.sqrt(d.Predicted));
+		});
+		
+          svg.append("line")
+                         .attr("x1", xScale(50))
+                          .attr("y1", yScale(26))
+                         .attr("x2", xScale(220))
+                         .attr("y2", yScale(220))
+                         .attr("stroke-width", 1)
+                         .attr("stroke", "rgb(6,120,155)");
+						 
+
+	//Hover the mouse
+	d3.selectAll("circle")
+		.data(dataset)
+		.on("mouseover", function(d) 
+		{
+			d3.select(this)
+			.append("title")
+			.text(function(d) {
+			 return Math.abs(d.Predicted/d.Actual-1);
+			 });
+		});	
+});			
+</script>
+			
+</body>
+</html>

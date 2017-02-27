@@ -1,0 +1,59 @@
+Test Mean Squared Error = 729.854731639
+Learned regression tree model:
+DecisionTreeModel regressor of depth 5 with 37 nodes
+  If (feature 0 <= 258.0)
+   If (feature 0 <= 105.0)
+    If (feature 0 <= 97.0)
+     If (feature 0 <= 85.0)
+      Predict: 61.0
+     Else (feature 0 > 85.0)
+      If (feature 0 <= 90.0)
+       Predict: 70.0
+      Else (feature 0 > 90.0)
+       Predict: 64.625
+    Else (feature 0 > 97.0)
+     If (feature 0 <= 101.0)
+      If (feature 0 <= 98.0)
+       Predict: 69.66666666666667
+      Else (feature 0 > 98.0)
+       Predict: 83.0
+     Else (feature 0 > 101.0)
+      Predict: 68.5
+   Else (feature 0 > 105.0)
+    If (feature 0 <= 119.0)
+     If (feature 0 <= 110.0)
+      If (feature 0 <= 107.0)
+       Predict: 83.66666666666667
+      Else (feature 0 > 107.0)
+       Predict: 78.5
+     Else (feature 0 > 110.0)
+      If (feature 0 <= 113.0)
+       Predict: 88.8
+      Else (feature 0 > 113.0)
+       Predict: 81.5
+    Else (feature 0 > 119.0)
+     If (feature 0 <= 130.0)
+      Predict: 107.5
+     Else (feature 0 > 130.0)
+      If (feature 0 <= 140.0)
+       Predict: 85.0
+      Else (feature 0 > 140.0)
+       Predict: 96.29411764705883
+  Else (feature 0 > 258.0)
+   If (feature 0 <= 400.0)
+    If (feature 0 <= 305.0)
+     If (feature 0 <= 302.0)
+      Predict: 136.66666666666666
+     Else (feature 0 > 302.0)
+      Predict: 145.0
+    Else (feature 0 > 305.0)
+     If (feature 0 <= 307.0)
+      Predict: 200.0
+     Else (feature 0 > 307.0)
+      If (feature 0 <= 351.0)
+       Predict: 161.5
+      Else (feature 0 > 351.0)
+       Predict: 179.16666666666666
+   Else (feature 0 > 400.0)
+    Predict: 225.0
+
