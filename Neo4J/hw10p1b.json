@@ -1,0 +1,144 @@
+{
+"statements":[{
+"statement":"CREATE (matrix1:Movie{props} ) RETURN matrix1" ,
+"parameters": {
+"props" :{ 
+"title" : "The Matrix", "year" : "1999-03-31"  
+}
+}
+}
+,
+{
+"statement":"CREATE (matrix2:Movie{props} ) RETURN matrix2" ,
+"parameters": {
+"props" :{ 
+"title" : "The Matrix Reloaded", "year" : "2003-05-07"  
+}
+}
+}
+,
+{
+"statement":"CREATE (matrix3:Movie{props} ) RETURN matrix3" ,
+"parameters": {
+"props" :{ 
+"title" : "The Matrix Revolutions", "year" : "2003-10-27 "  
+}
+}
+}
+,
+{
+"statement":"CREATE (keanu:Actor{props} ) RETURN keanu" ,
+"parameters": {
+"props" :{ 
+"name" : "Keanu Reeves"
+}
+}
+}
+
+,
+{
+"statement":"CREATE (laurence:Actor{props} ) RETURN laurence" ,
+"parameters": {
+"props" :{ 
+"name" : "Laurence Fishburne"
+}
+}
+}
+,
+
+{
+"statement":"CREATE (carrieanne:Actor{props} ) RETURN carrieanne" ,
+"parameters": {
+"props" :{ 
+"name" : "Carrie-Anne Moss"
+}
+}
+}
+,
+{
+"statement": "CREATE (keanu)-[:ACTS_IN { role : 'Neo' }]->(matrix1)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+
+,
+{
+"statement": "CREATE (keanu)-[:ACTS_IN { role : 'Neo' }]->(matrix2)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+
+,
+{
+"statement": "CREATE (keanu)-[:ACTS_IN { role : 'Neo' }]->(matrix3)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (laurence)-[:ACTS_IN { role : 'Morpheus' }]->(matrix1)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (laurence)-[:ACTS_IN { role : 'Morpheus' }]->(matrix2)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (laurence)-[:ACTS_IN { role : 'Morpheus' }]->(matrix3)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix1)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix2)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+,
+{
+"statement": "CREATE (carrieanne)-[:ACTS_IN { role : 'Trinity' }]->(matrix2)",
+"resultDataContents": [
+"row",
+"graph"
+]
+}
+ ]
+}
+POST http://localhost:7474/db/data/transaction
+Accept: application/json; charset=UTF-8
+Content-Type: application/json
+
+C:\Users\SK\Documents\MyClasses\Harvard_cscie55\E63_Spring2016-2\Downloads\curl-
+7.48.0-win64-mingw\curl-7.48.0-win64-mingw\bin>
+curl -i -H accept:application/json -H content-type:application/json -XPOST http://localhost:7474/db/data/transact
+ion/commit --data "@hw10p1b,json"
+
+
+
+
